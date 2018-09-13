@@ -1,0 +1,49 @@
+{
+  "name": "openplayerjs-youtube",
+  "version": "1.0.0",
+  "author": {
+    "name": "Rafael Miranda",
+    "email": "rafa8626@gmail.com"
+  },
+  "license": "MIT",
+  "description": "OpenPlayer extension to play YouTube videos",
+  "repository": {
+    "url": "https://github.com/openplayerjs/openplayerjs-youtube.git",
+    "type": "git"
+  },
+  "main": "./dist/openplayer-youtube.js",
+  "keywords": [
+    "media",
+    "video",
+    "youtube",
+    "openplayer"
+  ],
+  "scripts": {
+    "build": "[ -d ./dist ] && rm -R ./dist; webpack --mode=production",
+    "lint": "eslint src"
+  },
+  "readme": "https://github.com/openplayerjs/openplayerjs-youtube/blob/master/README.md",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "autoprefixer": "^9.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
+    "babili-webpack-plugin": "^0.1.2",
+    "core-js": "^2.5.7",
+    "eslint": "^5.0.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "unminified-webpack-plugin": "^2.0.0",
+    "webpack": "^4.17.3",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "simple-load-script": "^1.0.2"
+  }
+}
