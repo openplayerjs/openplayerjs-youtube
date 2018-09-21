@@ -31,7 +31,7 @@ module.exports = {
                 }]
             },
             {
-                test: /src\/*\.js$/,
+                test: /src\/youtube.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
