@@ -1,4 +1,8 @@
-# OpenPlayerJS - YouTube extension
+![openplayer](https://user-images.githubusercontent.com/910829/46182430-d4c0f380-c299-11e8-89a8-c7554a70b66c.png)
+
+# [OpenPlayer.js - YouTube](https://www.openplayerjs.com)
+
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Play YouTube videos using OpenPlayerJS.
 

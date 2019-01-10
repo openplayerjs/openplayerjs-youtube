@@ -11,12 +11,12 @@
     "url": "https://github.com/openplayerjs/openplayerjs-youtube.git",
     "type": "git"
   },
-  "main": "./dist/openplayer-youtube.js",
+  "main": "./dist/openplayerjs-youtube.js",
   "keywords": [
     "media",
     "video",
     "youtube",
-    "openplayer"
+    "openplayerjs"
   ],
   "scripts": {
     "build": "[ -d ./dist ] && rm -R ./dist; webpack --mode=production",
@@ -33,12 +33,14 @@
     "babel-preset-minify": "^0.4.3",
     "babili-webpack-plugin": "^0.1.2",
     "core-js": "^2.5.7",
+    "conventional-changelog": "^3.0.5",
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.14.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "release-it": "^9.4.4",
     "unminified-webpack-plugin": "^2.0.0",
     "webpack": "^4.17.3",
     "webpack-cli": "^3.0.8"
