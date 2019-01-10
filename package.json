@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "build": "[ -d ./dist ] && rm -R ./dist; webpack --mode=production",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "release": "npm run build && release-it"
   },
   "readme": "https://github.com/openplayerjs/openplayerjs-youtube/blob/master/README.md",
   "devDependencies": {
