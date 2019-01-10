@@ -5,7 +5,6 @@
 ### Bug Fixes
 
 * **webpack:** Fixed line in webpack to create bundles correctly; added dist files ([775965b](https://github.com/openplayerjs/openplayerjs-youtube/commit/775965b))
-* **webpack:** Fixed line in webpack to create bundles correctly; added dist files ([0ce492a](https://github.com/openplayerjs/openplayerjs-youtube/commit/0ce492a))
 
 
 ### Features
