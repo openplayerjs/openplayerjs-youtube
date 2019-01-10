@@ -2,9 +2,12 @@
 
 # [OpenPlayer.js - YouTube](https://www.openplayerjs.com)
 
+[![NPM](https://nodei.co/npm/openplayerjs-youtube.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/openplayerjs-youtube/)
+<br>
+[![JSDelivr](https://data.jsdelivr.com/v1/package/npm/openplayerjs-youtube/badge)](https://www.jsdelivr.com/package/npm/openplayerjs-youtube)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-Play YouTube videos using OpenPlayerJS.
+Now you can play any YouTube videos using the awesome OpenPlayerJS!
 
 ## Installation
 
