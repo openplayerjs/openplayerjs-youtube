@@ -5,7 +5,7 @@ const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 module.exports = {
     context: __dirname,
     entry: {
-        'openplayer-youtube.min.js': './src/youtube.js'
+        'openplayerjs-youtube.min.js': './src/youtube.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
