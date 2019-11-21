@@ -1,6 +1,6 @@
 {
   "name": "openplayerjs-youtube",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "Rafael Miranda",
     "email": "rafa8626@gmail.com"
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@release-it/conventional-changelog": "^1.1.0",
     "babel-loader": "^8.0.6",
     "babel-preset-minify": "^0.5.0",
     "babili-webpack-plugin": "^0.1.2",

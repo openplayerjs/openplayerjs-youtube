@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/openplayerjs/openplayerjs-youtube/compare/v1.1.0...v1.1.1) (2019-11-21)
+
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/openplayerjs/openplayerjs-youtube/compare/v1.1.0...v1.1.1) (2019-11-21)
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2019-01-10)
 

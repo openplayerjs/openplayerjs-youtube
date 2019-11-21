@@ -514,6 +514,14 @@ var YouTube = function YouTube(element, media) {
       return player.getPlaybackRate();
     },
 
+    set defaultPlaybackRate(value) {
+      player.setPlaybackRate(value);
+    },
+
+    get defaultPlaybackRate() {
+      return player.getPlaybackRate();
+    },
+
     set currentTime(value) {
       if (player) {
         player.seekTo(value);

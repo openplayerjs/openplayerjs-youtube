@@ -295,6 +295,12 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
         get playbackRate() {
             return player.getPlaybackRate();
         },
+        set defaultPlaybackRate(value) {
+            player.setPlaybackRate(value);
+        },
+        get defaultPlaybackRate() {
+            return player.getPlaybackRate();
+        },
         set currentTime(value) {
             if (player) {
                 player.seekTo(value);
