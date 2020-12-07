@@ -13,7 +13,7 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
     const id = `op-yt__${element.id || new Date().getTime()}`;
     const isAudio = element.tagName === 'AUDIO';
     const opts = {
-        url: 'https://www.youtube.com/player_api',
+        url: 'https://www.youtube.com/iframe_api',
         autoplay: 0,
         controls: 0,
         disablekb: 1,
@@ -299,7 +299,7 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
             player.setPlaybackRate(value);
         },
         get defaultPlaybackRate() {
-            return player.getPlaybackRate();
+            return player ? player.getPlaybackRate() : 1;
         },
         set currentTime(value) {
             if (player) {

@@ -1,6 +1,6 @@
 {
   "name": "openplayerjs-youtube",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "author": {
     "name": "Rafael Miranda",
     "email": "rafa8626@gmail.com"
@@ -25,27 +25,27 @@
   },
   "readme": "https://github.com/openplayerjs/openplayerjs-youtube/blob/master/README.md",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@release-it/conventional-changelog": "^1.1.0",
-    "babel-loader": "^8.0.6",
-    "babel-preset-minify": "^0.5.0",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@release-it/conventional-changelog": "^2.0.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-minify": "^0.5.1",
     "babili-webpack-plugin": "^0.1.2",
     "conventional-changelog": "^3.1.8",
-    "core-js": "^3.1.3",
+    "core-js": "^3.8.1",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": "^2.17.3",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "release-it": "^12.4.3",
+    "release-it": "^14.2.2",
     "unminified-webpack-plugin": "^2.0.0",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.2.0"
   },
   "dependencies": {
     "simple-load-script": "^1.0.2",
-    "openplayerjs": "^1.16.11"
+    "openplayerjs": "^2.2.2"
   }
 }

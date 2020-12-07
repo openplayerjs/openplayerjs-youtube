@@ -32,7 +32,7 @@ It allows you to override YouTube's configuration by using the `youtube` object 
     <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
     <script src="/path/to/openplayerjs-youtube.min.js"></script>
     <script>
-        var player = new OpenPlayer('video', null, false, {
+        var player = new OpenPlayer('video', {
             youtube: {
                 // config
             }
