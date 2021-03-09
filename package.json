@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "simple-load-script": "^1.0.2",
-    "openplayerjs": "^2.3.0"
+    "openplayerjs": "^2.5.0"
   }
 }
