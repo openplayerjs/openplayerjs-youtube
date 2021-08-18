@@ -98,90 +98,163 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-}(this, function () {
-  var undef;
+"use strict";
 
-  function deleteFromGlobal(name) {
-    try {
-      delete window[name];
-    } catch (e) {
-      window[name] = null;
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = getScript;
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var glob = window;
+var scripName = 'simpleLoadScript';
+var globalCbsName = "_$_".concat(scripName, "CallBacks_$_");
+var counter = 0;
+
+var uid = function uid() {
+  return "script-".concat(counter++);
+};
+
+var type = function type(obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+};
+
+var typeObj = function typeObj(obj) {
+  return type(obj) === 'object';
+};
+
+var typeStr = function typeStr(obj) {
+  return type(obj) === 'string';
+};
+
+var getCallBackObject = function getCallBackObject() {
+  glob[globalCbsName] = !typeObj(glob[globalCbsName]) ? {} : glob[globalCbsName];
+  return glob[globalCbsName];
+};
+
+var placementNode = function placementNode(opts) {
+  if (opts.insertInto) {
+    return document.querySelector(opts.insertInto);
+  }
+
+  return opts.inBody ? document.body : document.head;
+};
+
+var createScript = function createScript(opts) {
+  var script = document.createElement('script');
+
+  if (opts.attrs && typeObj(opts.attrs)) {
+    for (var _i = 0, _Object$keys = Object.keys(opts.attrs); _i < _Object$keys.length; _i++) {
+      var attr = _Object$keys[_i];
+      script.setAttribute(attr, opts.attrs[attr]);
     }
   }
 
-  function getScript(url, options) {
-    return new Promise(function (resolve, reject) {
-      if (typeof url === 'object') {
-        options = url;
-        url = options.url;
-      }
-      if (!options) options = {};
-      if (!url) {
-        reject('Error: no script url');
-        return;
-      }
-      var script = document.createElement('script');
-      var where = (function () {
-        if (options.insertInto) {
-          return document.querySelector(options.insertInto);
-        }
-        return options.inBody ? document.body : document.head;
-      }());
-      if (!where) {
-        reject('Error: no DOM element to append script');
-        return;
-      }
-      var attrs = options.attrs;
-      var removeScript = options.removeScript;
-      var callBackName = options.callBackName;
-      for (var attr in attrs) {
-        if (Object.prototype.hasOwnProperty.call(attrs, attr)) {
-          script.setAttribute(attr, attrs[attr]);
-        }
-      }
-      if (!callBackName) {
-        script.addEventListener('load', function () {
-          if (removeScript) where.removeChild(script);
-          resolve(removeScript ? undef : script);
-        });
-      } else {
-        window[callBackName] = function (res) {
-          if (!res) res = removeScript ? undef : script;
-          if (!options.dontRemoveCallBack) deleteFromGlobal(callBackName);
-          if (removeScript) where.removeChild(script);
-          resolve(res || removeScript ? undef : script);
-        };
-      }
-      script.addEventListener('error', function () {
-        where.removeChild(script);
-        reject('Error: loading script');
+  return script;
+};
+
+var loadCallBack = function loadCallBack(opts) {
+  if (opts.callBack && type(opts.callBack) === 'function') {
+    opts.callBack();
+  }
+};
+
+var loadRemoveScript = function loadRemoveScript(removeScript, where, script) {
+  if (removeScript) {
+    where.removeChild(script);
+  }
+};
+
+var prepareCallBack = function prepareCallBack(opts) {
+  var callBackName = opts.callBackName;
+  var url = opts.url;
+  return [url, callBackName ? glob : getCallBackObject(), callBackName || uid()];
+};
+
+var getScriptDefaults = {
+  jsonp: false,
+  callBackParamName: 'callback',
+  removeScript: false,
+  callBackName: null
+};
+
+function getScript() {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  if (arguments.length > 1) {
+    return Promise.all(Array.prototype.slice.call(arguments).map(getScript));
+  }
+
+  var optsTypeStr = typeStr(opts);
+  return new Promise(function (resolve, reject) {
+    if (!(typeObj(opts) && opts.url || optsTypeStr)) {
+      reject('Error: object with url or url string needed');
+      return;
+    }
+
+    if (optsTypeStr) {
+      opts = {
+        url: opts
+      };
+    }
+
+    opts = Object.assign({}, getScriptDefaults, opts);
+    var where = placementNode(opts);
+
+    if (!where) {
+      reject('Error: no DOM element to append script');
+      return;
+    }
+
+    var script = createScript(opts);
+    var removeScript = opts.removeScript;
+    var jsonp = opts.callBackName || opts.jsonp;
+
+    if (!jsonp) {
+      script.addEventListener('load', function () {
+        loadRemoveScript(removeScript, where, script);
+        loadCallBack(opts);
+        resolve(removeScript ? undefined : script);
       });
-      script.src = url;
-      where.appendChild(script);
+    } else {
+      var _prepareCallBack = prepareCallBack(opts),
+          _prepareCallBack2 = _slicedToArray(_prepareCallBack, 3),
+          url = _prepareCallBack2[0],
+          callBackObj = _prepareCallBack2[1],
+          callBackName = _prepareCallBack2[2];
+
+      opts.url = url;
+
+      callBackObj[callBackName] = function (res) {
+        delete callBackObj[callBackName];
+        loadRemoveScript(removeScript, where, script);
+        loadCallBack(opts);
+        resolve(res || removeScript ? undefined : script);
+      };
+    }
+
+    script.addEventListener('error', function () {
+      where.removeChild(script);
+      reject('Error: loading script');
     });
-  }
+    script.src = opts.url;
+    where.appendChild(script);
+  });
+}
 
-  // array of urls or array of objects
-  function all() {
-    if (!arguments.length) return Promise.reject(new Error('No files or no file configs'));
-    return Promise.all(Array.prototype.slice.call(arguments).map(function (e) {
-      return Array.isArray(e) ? getScript.apply(null, e) : getScript(e);
-    }));
-  }
-
-  getScript.deleteFromGlobal = deleteFromGlobal;
-  getScript.all = all;
-
-  return getScript;
-}));
-
+module.exports = exports.default;
 
 /***/ }),
 /* 1 */
@@ -509,15 +582,19 @@ var YouTube = function YouTube(element, media) {
     },
 
     set playbackRate(value) {
-      player.setPlaybackRate(value);
+      if (player) {
+        player.setPlaybackRate(value);
+      }
     },
 
     get playbackRate() {
-      return player.getPlaybackRate();
+      return player ? player.getPlaybackRate() : 1;
     },
 
     set defaultPlaybackRate(value) {
-      player.setPlaybackRate(value);
+      if (player) {
+        player.setPlaybackRate(value);
+      }
     },
 
     get defaultPlaybackRate() {

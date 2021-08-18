@@ -1,6 +1,6 @@
 {
   "name": "openplayerjs-youtube",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": {
     "name": "Rafael Miranda",
     "email": "rafa8626@gmail.com"
@@ -39,13 +39,13 @@
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.22.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "release-it": "^14.2.2",
+    "release-it": "^14.11.5",
     "unminified-webpack-plugin": "^2.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
     "simple-load-script": "^1.0.3",
-    "openplayerjs": "^2.7.0"
+    "openplayerjs": "^2.8.2"
   }
 }
