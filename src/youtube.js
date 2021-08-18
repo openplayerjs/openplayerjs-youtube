@@ -290,13 +290,17 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
             return false;
         },
         set playbackRate(value) {
-            player.setPlaybackRate(value);
+            if (player) {
+                player.setPlaybackRate(value);
+            }
         },
         get playbackRate() {
-            return player.getPlaybackRate();
+            return player ? player.getPlaybackRate() : 1;
         },
         set defaultPlaybackRate(value) {
-            player.setPlaybackRate(value);
+            if (player) {
+                player.setPlaybackRate(value);
+            }
         },
         get defaultPlaybackRate() {
             return player ? player.getPlaybackRate() : 1;
