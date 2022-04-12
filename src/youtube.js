@@ -335,8 +335,8 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
     });
 };
 
-if (OpenPlayer) {
-    OpenPlayer.addMedia(
+if (OpenPlayerJS) {
+    OpenPlayerJS.addMedia(
         'youtube',
         'video/x-youtube',
         url => (/\/\/(www\.youtube|youtu\.?be)/i.test(url) ? 'video/x-youtube' : null),

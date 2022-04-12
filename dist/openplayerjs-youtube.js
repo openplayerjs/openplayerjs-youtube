@@ -638,8 +638,8 @@ var YouTube = function YouTube(element, media) {
   });
 };
 
-if (OpenPlayer) {
-  OpenPlayer.addMedia('youtube', 'video/x-youtube', function (url) {
+if (OpenPlayerJS) {
+  OpenPlayerJS.addMedia('youtube', 'video/x-youtube', function (url) {
     return /\/\/(www\.youtube|youtu\.?be)/i.test(url) ? 'video/x-youtube' : null;
   }, YouTube);
 }
