@@ -1,8 +1,12 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    target: 'node',
+    stats: {
+        children: true,
+    },
     context: __dirname,
     entry: {
         'openplayerjs-youtube.min.js': './src/youtube.js'
@@ -12,7 +16,8 @@ module.exports = {
         filename: '[name]',
         publicPath: '/dist/',
         libraryTarget: 'umd',
-        libraryExport: 'default'
+        libraryExport: 'default',
+        globalObject: 'this',
     },
     module: {
         rules: [
@@ -33,19 +38,41 @@ module.exports = {
             {
                 test: /src\/youtube.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    },
+                ],
             },
         ]
     },
+    resolve: {
+        extensions: ['.ts', '.js'],
+        fallback: {
+            fs: false,
+        },
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+                terserOptions: {
+                    mangle: true,
+                    format: {
+                        comments: false,
+                    },
+                },
+                extractComments: false,
+            }),
+        ],
+    },
     plugins: [
-        new ExtractTextPlugin('[name]'),
         new UnminifiedWebpackPlugin({
-            postfix: ' ',
-        })
-    ]
+            postfix: 'nomin',
+        }),
+    ],
 };

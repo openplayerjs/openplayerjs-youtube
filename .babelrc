@@ -1,11 +1,15 @@
 {
   "comments": false,
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime"
+    ]
+  ],
   "presets": [
     [
       "@babel/preset-env",
       {
-        "targets": ">0.5%",
-        "useBuiltIns": "usage"
+        "corejs": "3.22"
       }
     ]
   ]
