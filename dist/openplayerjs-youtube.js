@@ -194,6 +194,56 @@ function _defineProperty(obj, key, value) {
 
 module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
+/***/ }),
+
+/***/ 215:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var objectWithoutPropertiesLoose = __webpack_require__(71);
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 71:
+/***/ ((module) => {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
 /***/ })
 
 /******/ 	});
@@ -257,15 +307,19 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(416);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var simple_load_script__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(714);
-/* harmony import */ var simple_load_script__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(simple_load_script__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(215);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(416);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var simple_load_script__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(714);
+/* harmony import */ var simple_load_script__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(simple_load_script__WEBPACK_IMPORTED_MODULE_2__);
 
+
+var _excluded = ["url", "nocookie"];
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
@@ -301,40 +355,40 @@ var YouTube = function YouTube(element, media) {
   var playerVars = _objectSpread(_objectSpread({}, opts), options);
 
   var library = playerVars.url,
-      noCookies = playerVars.nocookie;
-  delete playerVars.url;
-  delete playerVars.nocookie;
+      noCookies = playerVars.nocookie,
+      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default()(playerVars, _excluded);
 
   function _getYouTubeId(url) {
     return url.match(/(?:(?:youtu\.be\/)|(?:v=)|(?:\/v\/))(\w+)/)[1];
   }
 
-  function _startInterval() {
+  var _startInterval = function _startInterval() {
     interval = setInterval(function () {
       var event = new CustomEvent('timeupdate');
       element.dispatchEvent(event);
     }, 250);
-  }
+  };
 
-  function _stopInterval() {
+  var _stopInterval = function _stopInterval() {
     if (interval) {
       clearInterval(interval);
     }
-  }
+  };
 
   var playerSettings = {
     id: id,
     videoId: _getYouTubeId(media.src),
     height: isAudio ? 1 : element.offsetHeight,
     width: isAudio ? 1 : element.offsetWidth,
-    playerVars: playerVars,
+    widget_referrer: window.location.host,
     origin: window.location.host,
+    playerVars: rest,
     events: {
       onReady: function onReady(e) {
         player = e.target;
         var iframe = player.getIframe();
 
-        if (element.muted) {
+        if ('msLaunchUri' in window.navigator && !('documentMode' in document) || /chrome/i.test(window.navigator.userAgent) || element.muted) {
           player.mute();
         }
 
@@ -471,7 +525,7 @@ var YouTube = function YouTube(element, media) {
     playerVars.enablejsapi = 1;
 
     if (typeof YT === 'undefined' || !YT.loaded) {
-      simple_load_script__WEBPACK_IMPORTED_MODULE_1___default()(library);
+      simple_load_script__WEBPACK_IMPORTED_MODULE_2___default()(library);
     }
 
     return this;

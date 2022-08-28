@@ -29,10 +29,7 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
         nocookie: false,
     };
     const playerVars = { ...opts, ...options };
-    const { url: library, nocookie: noCookies } = playerVars;
-
-    delete playerVars.url;
-    delete playerVars.nocookie;
+    const { url: library, nocookie: noCookies , ...rest } = playerVars;
 
     /**
      * Formats:
@@ -48,14 +45,14 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
         return url.match(/(?:(?:youtu\.be\/)|(?:v=)|(?:\/v\/))(\w+)/)[1];
     }
 
-    function _startInterval() {
+    const _startInterval = () => {
         // create timer
         interval = setInterval(() => {
             const event = new CustomEvent('timeupdate');
             element.dispatchEvent(event);
         }, 250);
     }
-    function _stopInterval() {
+    const _stopInterval = () => {
         if (interval) {
             clearInterval(interval);
         }
@@ -66,15 +63,17 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
         videoId: _getYouTubeId(media.src),
         height: isAudio ? 1 : element.offsetHeight,
         width: isAudio ? 1 : element.offsetWidth,
-        playerVars,
+        widget_referrer: window.location.host,
         origin: window.location.host,
+        playerVars: rest,
         events: {
             onReady: e => {
                 player = e.target;
                 const iframe = player.getIframe();
 
-                // Check for `muted` attribute to start video without sound
-                if (element.muted) {
+                // Check if browser is a Chromium browser or the main element is muted; if so, mute it
+                // @see https://github.com/videojs/videojs-youtube/issues/593
+                if ('msLaunchUri' in window.navigator && !('documentMode' in document) || /chrome/i.test(window.navigator.userAgent) || element.muted) {
                     player.mute();
                 }
 
@@ -92,7 +91,6 @@ const YouTube = (element, media, autoplay = false, options = {}) => {
             },
             onStateChange: e => {
                 let events = [];
-
                 switch (e.data) {
                     case 0: // YT.PlayerState.ENDED
                         events = ['ended'];
