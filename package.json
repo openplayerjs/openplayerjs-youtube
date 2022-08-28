@@ -1,6 +1,6 @@
 {
   "name": "openplayerjs-youtube",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": {
     "name": "Rafael Miranda",
     "email": "rafa8626@gmail.com"
@@ -52,6 +52,6 @@
     "core-js": "^3.22.8"
   },
   "engines": {
-      "node": ">=16.0.0"
+    "node": ">=16.0.0"
   }
 }
