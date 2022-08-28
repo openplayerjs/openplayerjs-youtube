@@ -39,3 +39,13 @@ It allows you to override YouTube's configuration by using the `youtube` object 
 </body>
 </html>
 ```
+
+## A word about Privacy
+
+This YouTube plug-in leverages the Google's YouTube Iframe API, which in turn will allow you to set a regular YouTube URL. However, this URL sets a tracking cookie by default (for marketing purposes). 
+
+This alone represents a compliance issue for the European General Data Protection Regulation (GDPR), and potentially for browsers with more strict privacy policies.
+
+This plug-in has an option to disable the cookie in the settings, which in that case is recommended to use in this case: `nocookie`; however, this is only one of the multiple steps to achieve an experience that is according to what Privacy Policy expects.
+
+To learn more about how to get a better experience with YouTube and GDPR, check [this source](https://axbom.com/embed-youtube-videos-without-cookies/).
