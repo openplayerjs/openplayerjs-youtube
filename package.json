@@ -49,7 +49,7 @@
   "dependencies": {
     "simple-load-script": "^1.0.3",
     "openplayerjs": "^2.11.0",
-    "core-js": "^3.22.8"
+    "core-js": "^3.30.2"
   },
   "engines": {
     "node": ">=16.0.0"
