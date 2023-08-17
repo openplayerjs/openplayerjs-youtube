@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "simple-load-script": "^1.0.3",
-    "openplayerjs": "^2.11.0",
+    "openplayerjs": "^2.12.0",
     "core-js": "^3.22.8"
   },
   "engines": {
