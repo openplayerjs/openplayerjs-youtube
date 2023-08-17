@@ -175,9 +175,11 @@ module.exports = exports.default;
 /***/ }),
 
 /***/ 416:
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+var toPropertyKey = __webpack_require__(62);
 function _defineProperty(obj, key, value) {
+  key = toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -188,10 +190,8 @@ function _defineProperty(obj, key, value) {
   } else {
     obj[key] = value;
   }
-
   return obj;
 }
-
 module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
@@ -200,15 +200,12 @@ module.exports = _defineProperty, module.exports.__esModule = true, module.expor
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var objectWithoutPropertiesLoose = __webpack_require__(71);
-
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
   var target = objectWithoutPropertiesLoose(source, excluded);
   var key, i;
-
   if (Object.getOwnPropertySymbols) {
     var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
     for (i = 0; i < sourceSymbolKeys.length; i++) {
       key = sourceSymbolKeys[i];
       if (excluded.indexOf(key) >= 0) continue;
@@ -216,10 +213,8 @@ function _objectWithoutProperties(source, excluded) {
       target[key] = source[key];
     }
   }
-
   return target;
 }
-
 module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
@@ -232,17 +227,61 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   var target = {};
   var sourceKeys = Object.keys(source);
   var key, i;
-
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
     if (excluded.indexOf(key) >= 0) continue;
     target[key] = source[key];
   }
-
   return target;
 }
-
 module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 36:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(698)["default"]);
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 62:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(698)["default"]);
+var toPrimitive = __webpack_require__(36);
+function _toPropertyKey(arg) {
+  var key = toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 698:
+/***/ ((module) => {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ })
 
@@ -316,12 +355,8 @@ var __webpack_exports__ = {};
 
 
 var _excluded = ["url", "nocookie"];
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-
 
 var YouTube = function YouTube(element, media) {
   var autoplay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -351,30 +386,24 @@ var YouTube = function YouTube(element, media) {
     iv_load_policy: 3,
     nocookie: false
   };
-
   var playerVars = _objectSpread(_objectSpread({}, opts), options);
-
   var library = playerVars.url,
-      noCookies = playerVars.nocookie,
-      rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default()(playerVars, _excluded);
-
+    noCookies = playerVars.nocookie,
+    rest = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0___default()(playerVars, _excluded);
   function _getYouTubeId(url) {
     return url.match(/(?:(?:youtu\.be\/)|(?:v=)|(?:\/v\/))(\w+)/)[1];
   }
-
   var _startInterval = function _startInterval() {
     interval = setInterval(function () {
       var event = new CustomEvent('timeupdate');
       element.dispatchEvent(event);
     }, 250);
   };
-
   var _stopInterval = function _stopInterval() {
     if (interval) {
       clearInterval(interval);
     }
   };
-
   var playerSettings = {
     id: id,
     videoId: _getYouTubeId(media.src),
@@ -387,11 +416,9 @@ var YouTube = function YouTube(element, media) {
       onReady: function onReady(e) {
         player = e.target;
         var iframe = player.getIframe();
-
         if ('msLaunchUri' in window.navigator && !('documentMode' in document) || /chrome/i.test(window.navigator.userAgent) || element.muted) {
           player.mute();
         }
-
         ['mouseover', 'mouseout'].forEach(function (event) {
           iframe.addEventListener(event, function (ev) {
             var newEvent = new CustomEvent(ev.type);
@@ -405,55 +432,42 @@ var YouTube = function YouTube(element, media) {
       },
       onStateChange: function onStateChange(e) {
         var events = [];
-
         switch (e.data) {
           case 0:
             events = ['ended'];
             _paused = false;
             _ended = !playerVars.loop;
-
             if (!playerVars.loop) {
               _stopInterval();
             }
-
             break;
-
           case 1:
             events = ['play', 'playing'];
             _paused = false;
             _ended = false;
-
             _startInterval();
-
             break;
-
           case 2:
             events = ['pause'];
             _paused = true;
             _ended = false;
-
             _stopInterval();
-
             break;
-
           case 3:
             events = ['progress'];
             _ended = false;
             break;
-
           case 5:
             events = ['loadeddata', 'loadedmetadata', 'canplay'];
             _paused = true;
             _ended = false;
             break;
-
           default:
             events = ['loadedmetadata'];
             _paused = true;
             _ended = false;
             break;
         }
-
         for (var i = 0, total = events.length; i < total; i++) {
           var event = new CustomEvent(events[i]);
           element.dispatchEvent(event);
@@ -461,103 +475,79 @@ var YouTube = function YouTube(element, media) {
       },
       onError: function onError(e) {
         var message = '';
-
         switch (e.data) {
           case 2:
             message = "The request contains an invalid parameter value. Verify that video ID has 11 \n                            characters and that contains no invalid characters, such as exclamation points or asterisks.";
             break;
-
           case 5:
             message = "The requested content cannot be played in an HTML5 player or another error \n                            related to the HTML5 player has occurred.";
             break;
-
           case 100:
             message = 'The video requested was not found. Either video has been removed or has been marked as private.';
             break;
-
           case 101:
           case 105:
             message = 'The owner of the requested video does not allow it to be played in embedded players.';
             break;
-
           default:
             message = 'Unknown error.';
             break;
         }
-
         console.error("YouTube Error: ".concat(message));
       }
     }
   };
-
   function create() {
     if (document.getElementById(id)) {
       return;
     }
-
     var container = document.createElement('div');
     container.id = id;
-
     if (noCookies) {
       media.src = media.src.replace('.com', '-nocookie.com');
     }
-
     element.parentNode.insertBefore(container, element);
     element.style.display = 'none';
-
     if (isAudio || element.hasAttribute('playsinline')) {
       playerVars.playsinline = 1;
     }
-
     if (autoplay) {
       playerVars.autoplay = 1;
     }
-
     if (element.loop) {
       playerVars.loop = 1;
     }
-
     if ((playerVars.loop === 1 || media.src.indexOf('loop=') > -1) && !playerVars.playlist && media.src.indexOf('playlist=') === -1) {
       playerVars.playlist = _getYouTubeId(media.src);
     }
-
     playerVars.controls = 0;
     playerVars.enablejsapi = 1;
-
     if (typeof YT === 'undefined' || !YT.loaded) {
       simple_load_script__WEBPACK_IMPORTED_MODULE_2___default()(library);
     }
-
     return this;
   }
-
   function load() {
     return null;
   }
-
   function canPlayType(mimeType) {
     return mimeType === 'video/x-youtube';
   }
-
   function play() {
     player.playVideo();
   }
-
   function pause() {
     player.pauseVideo();
   }
-
   function destroy() {
     if (player) {
       player.destroy();
     }
   }
-
   window.onYouTubeIframeAPIReady = function () {
     create();
     return new YT.Player(id, playerSettings);
   };
-
   return Object.freeze({
     promise: promise,
     create: create,
@@ -566,13 +556,10 @@ var YouTube = function YouTube(element, media) {
     play: play,
     pause: pause,
     destroy: destroy,
-
     set src(source) {
       _source = typeof source === 'string' ? source : source[0].src;
-
       if (player) {
         var videoId = _getYouTubeId(_source);
-
         if (autoplay) {
           player.loadVideoById(videoId);
         } else {
@@ -580,18 +567,14 @@ var YouTube = function YouTube(element, media) {
         }
       }
     },
-
     get src() {
       if (player) {
         return player.getVideoUrl();
       }
-
       return '';
     },
-
     set volume(value) {
       _volume = value;
-
       if (player) {
         player.setVolume(value * 100);
         setTimeout(function () {
@@ -600,15 +583,12 @@ var YouTube = function YouTube(element, media) {
         }, 50);
       }
     },
-
     get volume() {
       if (player) {
         _volume = player.getVolume() / 100;
       }
-
       return _volume;
     },
-
     set muted(value) {
       if (player) {
         if (value) {
@@ -616,42 +596,34 @@ var YouTube = function YouTube(element, media) {
         } else {
           player.unMute();
         }
-
         setTimeout(function () {
           var event = new CustomEvent('volumechange');
           element.dispatchEvent(event);
         }, 50);
       }
     },
-
     get muted() {
       if (player) {
         return player.isMuted();
       }
-
       return false;
     },
-
     set playbackRate(value) {
       if (player) {
         player.setPlaybackRate(value);
       }
     },
-
     get playbackRate() {
       return player ? player.getPlaybackRate() : 1;
     },
-
     set defaultPlaybackRate(value) {
       if (player) {
         player.setPlaybackRate(value);
       }
     },
-
     get defaultPlaybackRate() {
       return player ? player.getPlaybackRate() : 1;
     },
-
     set currentTime(value) {
       if (player) {
         player.seekTo(value);
@@ -661,34 +633,26 @@ var YouTube = function YouTube(element, media) {
         }, 50);
       }
     },
-
     get currentTime() {
       if (player) {
         return player.getCurrentTime();
       }
-
       return 0;
     },
-
     get duration() {
       if (player) {
         return player.getDuration();
       }
-
       return 0;
     },
-
     get paused() {
       return _paused;
     },
-
     get ended() {
       return _ended;
     }
-
   });
 };
-
 if (OpenPlayerJS) {
   OpenPlayerJS.addMedia('youtube', 'video/x-youtube', function (url) {
     return /\/\/(www\.youtube|youtu\.?be)/i.test(url) ? 'video/x-youtube' : null;

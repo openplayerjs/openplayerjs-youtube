@@ -6,6 +6,12 @@
 
 Now you can play any YouTube videos using the awesome OpenPlayerJS!
 
+## 🚨 IMPORTANT 🚨
+
+### 🔧 This repository is in maintenance at this point. 🔧
+
+No new features or addition will be added, only bugfixes.
+
 ## Installation
 
 1. Set the video/audio as indicated in the [OpenPlayerJS installation](https://github.com/openplayerjs/openplayerjs#installation).
@@ -22,27 +28,30 @@ It allows you to override YouTube's configuration by using the `youtube` object 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<body>
+  <body>
     <video class="op-player__media" id="video" controls playsinline>
-        <source src="https://www.youtube.com/watch?v=xcJtL7QggTI" type="video/x-youtube">
+      <source
+        src="https://www.youtube.com/watch?v=xcJtL7QggTI"
+        type="video/x-youtube"
+      />
     </video>
     <script src="https://cdn.jsdelivr.net/npm/openplayerjs@latest/dist/openplayer.min.js"></script>
     <script src="/path/to/openplayerjs-youtube.min.js"></script>
     <script>
-        var player = new OpenPlayer('video', {
-            youtube: {
-                // config
-            }
-        });
-        player.init();
+      var player = new OpenPlayer("video", {
+        youtube: {
+          // config
+        },
+      });
+      player.init();
     </script>
-</body>
+  </body>
 </html>
 ```
 
 ## A word about Privacy
 
-This YouTube plug-in leverages the Google's YouTube Iframe API, which in turn will allow you to set a regular YouTube URL. However, this URL sets a tracking cookie by default (for marketing purposes). 
+This YouTube plug-in leverages the Google's YouTube Iframe API, which in turn will allow you to set a regular YouTube URL. However, this URL sets a tracking cookie by default (for marketing purposes).
 
 This alone represents a compliance issue for the European General Data Protection Regulation (GDPR), and potentially for browsers with more strict privacy policies.
 
