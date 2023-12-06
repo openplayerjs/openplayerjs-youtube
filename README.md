@@ -10,7 +10,7 @@ Now you can play any YouTube videos using the awesome OpenPlayerJS!
 
 ### 🔧 This repository is in maintenance at this point. 🔧
 
-No new features or addition will be added, only bugfixes.
+No new features or additions will be added, only bug fixes.
 
 ## Installation
 
