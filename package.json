@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "auto-changelog": "^2.4.0",
-    "core-js": "^3.32.0",
-    "openplayerjs": "^2.13.3",
+    "core-js": "^3.32.1",
+    "openplayerjs": "^2.14.0",
     "simple-load-script": "^1.0.3"
   },
   "engines": {
