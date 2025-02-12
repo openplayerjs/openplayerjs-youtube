@@ -48,7 +48,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "auto-changelog": "^2.4.0",
+    "auto-changelog": "^2.5.0",
     "core-js": "^3.32.1",
     "openplayerjs": "^2.14.0",
     "simple-load-script": "^1.0.3"
