@@ -50,7 +50,7 @@
   "dependencies": {
     "auto-changelog": "^2.5.0",
     "core-js": "^3.48.0",
-    "openplayerjs": "^2.14.11",
+    "openplayerjs": "^2.14.12",
     "simple-load-script": "^1.0.3"
   },
   "engines": {
